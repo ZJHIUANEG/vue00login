@@ -1,15 +1,33 @@
 <template>
   <div>
-    <router-link to="/login" tag="button" class="loginbtn">登录</router-link>
+    <button @click="flag = !flag" class="loginbtn">登录</button>
     <canv></canv>
-
-    <router-view></router-view>
+    <login v-if="flag" @func="show" @func1="close"></login>
   </div>
 </template>
 <script>
 import Canv from "./components/canv.vue";
+import Login from "./components/login.vue";
 export default {
-  components: { Canv }
+  components: { Canv, Login },
+  data() {
+    return {
+      account: "",
+      password: "",
+      flag: false
+    };
+  },
+  methods: {
+    show(data1, data2) {
+      this.account = data1;
+      this.password = data2;
+      console.log(this.account);
+      console.log(this.password);
+    },
+    close() {
+      this.flag = !this.flag;
+    }
+  }
 };
 </script>
 

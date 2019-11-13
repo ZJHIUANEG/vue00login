@@ -14,21 +14,22 @@
             v-model="item.model"
           />
         </div>
-        <input type="button" value="立即登录" />
+        <input type="button" value="立即登录" @click="getData" />
       </div>
-      <router-link to="/" tag="div">
-        <img
-          src="../image/叉.png"
-          alt="关闭"
-          @mouseover="flag = true"
-          @mouseout="flag = false"
-      /></router-link>
+      <img
+        src="../image/叉.png"
+        alt="关闭"
+        @mouseover="flag = true"
+        @mouseout="flag = false"
+        @click="closeLogin"
+      />
       <span v-if="flag" id="closetip">关闭</span>
     </div>
   </transition>
 </template>
 <script>
 export default {
+  props: ["parentFlag"],
   data() {
     return {
       title: "站点登录",
@@ -56,6 +57,19 @@ export default {
       });
       this.clearActive();
       this.list[index].className = "account active";
+    },
+    getData() {
+      if (this.list[0].model == "" || this.list[1].model == "") {
+        console.log("请输入内容");
+        return;
+      }
+      console.log("账号：" + this.list[0].model);
+      console.log("密码：" + this.list[1].model);
+      this.$emit("func", this.list[0].model, this.list[1].model);
+      this.list[0].model = this.list[1].model = "";
+    },
+    closeLogin() {
+      this.$emit("func1");
     }
   }
 };
