@@ -1,7 +1,7 @@
 <template>
   <div>
     <login></login>
-    <img id="bg" src="./image/bg.jpg" alt />
+    <div id="bg"></div>
   </div>
 </template>
 <script>
@@ -17,8 +17,8 @@ export default {
   },
   mounted: function() {
     var bg = document.getElementById("bg");
-    bg.style.width = document.documentElement.offsetWidth + "px";
-    bg.style.height = document.documentElement.offsetHeight + "px";
+    bg.style.width = document.documentElement.clientWidth + "px";
+    bg.style.height = document.documentElement.clientHeight + "px";
   },
   methods: {
     // show(data1, data2) {
@@ -35,4 +35,7 @@ export default {
 </script>
 
 <style lang="scss">
+#bg {
+  background-color: #333;
+}
 </style>
