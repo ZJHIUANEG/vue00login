@@ -1,6 +1,7 @@
 <template>
   <div>
     <login></login>
+    <img id="bg" src="./image/bg.jpg" alt />
   </div>
 </template>
 <script>
@@ -13,6 +14,11 @@ export default {
       // password: "",
       // flag: false
     };
+  },
+  mounted: function() {
+    var bg = document.getElementById("bg");
+    bg.style.width = document.documentElement.offsetWidth + "px";
+    bg.style.height = document.documentElement.offsetHeight + "px";
   },
   methods: {
     // show(data1, data2) {
