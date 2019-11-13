@@ -12,6 +12,7 @@
   "dependencies": {
     "mint-ui": "^2.2.13",
     "moment": "^2.24.0",
+    "particles.js": "^2.0.0",
     "three": "^0.110.0",
     "three-js": "^79.0.0",
     "vue": "^2.6.10",

@@ -16,7 +16,12 @@
         </div>
         <input type="button" value="立即登录" />
       </div>
-      <img src="../image/叉.png" alt="关闭" @mouseover="flag = true" @mouseout="flag = false" />
+      <img
+        src="../image/叉.png"
+        alt="关闭"
+        @mouseover="flag = true"
+        @mouseout="flag = false"
+      />
       <span v-if="flag" id="closetip">关闭</span>
     </div>
   </transition>
@@ -63,19 +68,6 @@ export default {
       this.clearActive();
       this.list[index].className = "account active";
     }
-    // getData() {
-    //   if (this.list[0].model == "" || this.list[1].model == "") {
-    //     console.log("请输入内容");
-    //     return;
-    //   }
-    //   console.log("账号：" + this.list[0].model);
-    //   console.log("密码：" + this.list[1].model);
-    //   this.$emit("func", this.list[0].model, this.list[1].model);
-    //   this.list[0].model = this.list[1].model = "";
-    // },
-    // closeLogin() {
-    //   this.$emit("func1");
-    // }
   }
 };
 </script>
@@ -86,8 +78,6 @@ export default {
   width: 340px;
   padding: 40px;
   background: rgba(0, 0, 0, 0.712);
-  top: 0;
-  left: 0;
   position: absolute;
   box-shadow: 0 -15px 30px #0d6395;
   border-radius: 5px;
