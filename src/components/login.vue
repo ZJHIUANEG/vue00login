@@ -14,22 +14,16 @@
             v-model="item.model"
           />
         </div>
-        <input type="button" value="立即登录" @click="getData" />
+        <input type="button" value="立即登录" />
       </div>
-      <img
-        src="../image/叉.png"
-        alt="关闭"
-        @mouseover="flag = true"
-        @mouseout="flag = false"
-        @click="closeLogin"
-      />
+      <img src="../image/叉.png" alt="关闭" @mouseover="flag = true" @mouseout="flag = false" />
       <span v-if="flag" id="closetip">关闭</span>
     </div>
   </transition>
 </template>
 <script>
 export default {
-  props: ["parentFlag"],
+  // props: ["parentFlag"],
   data() {
     return {
       title: "站点登录",
@@ -42,6 +36,17 @@ export default {
   },
   created() {
     this.clearActive();
+  },
+  mounted: function() {
+    var login = document.getElementsByClassName("login")[0];
+    login.style.top =
+      document.documentElement.scrollTop +
+      (document.documentElement.clientHeight - login.offsetHeight) / 2 +
+      "px";
+    login.style.left =
+      document.documentElement.scrollLeft +
+      (document.documentElement.clientWidth - login.offsetWidth) / 2 +
+      "px";
   },
   methods: {
     clearActive() {
@@ -57,20 +62,20 @@ export default {
       });
       this.clearActive();
       this.list[index].className = "account active";
-    },
-    getData() {
-      if (this.list[0].model == "" || this.list[1].model == "") {
-        console.log("请输入内容");
-        return;
-      }
-      console.log("账号：" + this.list[0].model);
-      console.log("密码：" + this.list[1].model);
-      this.$emit("func", this.list[0].model, this.list[1].model);
-      this.list[0].model = this.list[1].model = "";
-    },
-    closeLogin() {
-      this.$emit("func1");
     }
+    // getData() {
+    //   if (this.list[0].model == "" || this.list[1].model == "") {
+    //     console.log("请输入内容");
+    //     return;
+    //   }
+    //   console.log("账号：" + this.list[0].model);
+    //   console.log("密码：" + this.list[1].model);
+    //   this.$emit("func", this.list[0].model, this.list[1].model);
+    //   this.list[0].model = this.list[1].model = "";
+    // },
+    // closeLogin() {
+    //   this.$emit("func1");
+    // }
   }
 };
 </script>
@@ -81,8 +86,8 @@ export default {
   width: 340px;
   padding: 40px;
   background: rgba(0, 0, 0, 0.712);
-  top: 140px;
-  left: 32%;
+  top: 0;
+  left: 0;
   position: absolute;
   box-shadow: 0 -15px 30px #0d6395;
   border-radius: 5px;
@@ -160,20 +165,20 @@ export default {
   }
 }
 // 出场动画
-.v-enter,
-.v-leave-to {
-  opacity: 0;
-  transform: scale(0);
-}
+// .v-enter,
+// .v-leave-to {
+//   opacity: 0;
+//   transform: scale(0);
+// }
 
-.v-enter-active,
-.v-leave-active {
-  transition: all 0.8s ease;
-}
-.v-move {
-  transition: all 0.8s ease;
-}
-.v-leave-active {
-  position: absolute;
-}
+// .v-enter-active,
+// .v-leave-active {
+//   transition: all 0.8s ease;
+// }
+// .v-move {
+//   transition: all 0.8s ease;
+// }
+// .v-leave-active {
+//   position: absolute;
+// }
 </style>
