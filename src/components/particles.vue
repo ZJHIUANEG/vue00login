@@ -14,7 +14,7 @@ export default {
           value: 150,
           density: {
             enable: true,
-            value_area: 600
+            value_area: 1500
           }
         },
         color: {
@@ -126,7 +126,7 @@ export default {
 .container {
   top: 0px;
   position: relative;
-  background: url("../image/bg.jpg") no-repeat center;
+  background: url("../image/bg.png") no-repeat center;
   //   background: rgb(32, 32, 32);
   background-size: 100%;
   overflow: hidden;
