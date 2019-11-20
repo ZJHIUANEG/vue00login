@@ -1,28 +1,31 @@
 <template>
   <transition appear>
-    <div class="login">
-      <h1>{{ title }}</h1>
-
-      <div class="inputBox">
-        <div :class="item.className" v-for="item in list" :key="item.id">
-          <span>{{ item.icon }}</span>
-          <input
-            type="text"
-            :placeholder="item.name"
-            @click="inputActive(item.id)"
-            @blur="clearActive()"
-            v-model="item.model"
-          />
+    <div>
+      <div class="login">
+        <h1>{{ title }}</h1>
+        <div class="inputBox">
+          <div :class="item.className" v-for="item in list" :key="item.id">
+            <span>{{ item.icon }}</span>
+            <input
+              type="text"
+              :placeholder="item.name"
+              @click="inputActive(item.id)"
+              @blur="clearActive()"
+              v-model="item.model"
+            />
+          </div>
+          <input type="button" value="立即登录" />
         </div>
-        <input type="button" value="立即登录" />
+        <img
+          class="close"
+          src="../image/叉.png"
+          alt="关闭"
+          @mouseover="flag = true"
+          @mouseout="flag = false"
+        />
+        <span v-if="flag" id="closetip">关闭</span>
       </div>
-      <img
-        src="../image/叉.png"
-        alt="关闭"
-        @mouseover="flag = true"
-        @mouseout="flag = false"
-      />
-      <span v-if="flag" id="closetip">关闭</span>
+      <img class="loginBox" src="../image/loginBox.png" />
     </div>
   </transition>
 </template>
@@ -52,6 +55,10 @@ export default {
       document.documentElement.scrollLeft +
       (document.documentElement.clientWidth - login.offsetWidth) / 2 +
       "px";
+
+    var loginBox = document.getElementsByClassName("loginBox")[0];
+    loginBox.style.top = login.style.top;
+    loginBox.style.left = login.style.left;
   },
   methods: {
     clearActive() {
@@ -77,11 +84,12 @@ export default {
 .login {
   width: 340px;
   padding: 40px;
-  background: rgba(0, 0, 0, 0.712);
+  // background-color: rgba(0, 0, 0, 0.712);
   position: absolute;
-  box-shadow: 0 -15px 30px #0d6395;
+  // box-shadow: 0 -15px 30px #0d6395;
   border-radius: 5px;
   display: flex;
+  z-index: 20;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
@@ -133,7 +141,7 @@ export default {
       border: none;
     }
   }
-  img {
+  img.close {
     width: 20px;
     height: 20px;
     top: 20px;
@@ -153,6 +161,13 @@ export default {
     display: block;
     position: absolute;
   }
+}
+img.loginBox {
+  width: 420px;
+  height: 300px;
+  padding: 0;
+  position: absolute;
+  z-index: 10;
 }
 // 出场动画
 // .v-enter,
