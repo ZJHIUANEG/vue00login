@@ -5,6 +5,7 @@
         <h1>{{ title }}</h1>
         <div class="inputBox">
           <div :class="item.className" v-for="item in list" :key="item.id">
+            <div :class="item.bg"></div>
             <span>{{ item.icon }}</span>
             <input
               type="text"
@@ -37,8 +38,8 @@ export default {
       title: "站点登录",
       flag: false,
       list: [
-        { id: 1, icon: "U", name: "账号", model: "", className: "" },
-        { id: 2, icon: "P", name: "密码", model: "", className: "" }
+        { id: 1, icon: "U", name: "账号", model: "", className: "", bg: "" },
+        { id: 2, icon: "P", name: "密码", model: "", className: "", bg: "" }
       ]
     };
   },
@@ -64,6 +65,7 @@ export default {
     clearActive() {
       for (var i = 0; i < this.list.length; i++) {
         this.list[i].className = "account";
+        this.list[i].bg = "bg";
       }
     },
     inputActive: function(id) {
@@ -74,6 +76,7 @@ export default {
       });
       this.clearActive();
       this.list[index].className = "account active";
+      this.list[index].bg = "bg active";
     }
   }
 };
@@ -105,16 +108,32 @@ export default {
     font-size: 14px;
     margin: 20px 0 0 0;
     .account.active {
-      background: #5c99bd;
+      background: linear-gradient(135deg, transparent 6px, rgb(157, 227, 255) 0)
+          top left,
+        linear-gradient(135deg, transparent 6px, rgb(157, 227, 255) 0) top right,
+        linear-gradient(-45deg, transparent 6px, rgb(157, 227, 255) 0) bottom
+          right,
+        linear-gradient(-135deg, transparent 6px, rgb(157, 227, 255) 0) bottom
+          left;
+
+      background-size: 50% 50%;
+      background-repeat: no-repeat;
     }
     .account {
       display: flex;
       flex-direction: row;
-      line-height: 42px;
+      line-height: 40px;
       width: 300px;
-      height: 42px;
-      margin: 5px 0;
-      background: rgba(72, 192, 240, 0.637);
+      height: 40px;
+      margin: 10px 0;
+      z-index: 20;
+      position: relative;
+      background: linear-gradient(135deg, transparent 6px, #5c99bd 0) top left,
+        linear-gradient(135deg, transparent 6px, #5c99bd 0) top right,
+        linear-gradient(-45deg, transparent 6px, #5c99bd 0) bottom right,
+        linear-gradient(-135deg, transparent 6px, #5c99bd 0) bottom left;
+      background-size: 50% 50%;
+      background-repeat: no-repeat;
       span {
         font-weight: bold;
         font-size: 18px;
@@ -126,7 +145,21 @@ export default {
         width: 260px;
         border: none;
         outline: none;
+        z-index: 30;
+        color: black;
         background: none;
+      }
+      .bg {
+        position: absolute;
+        top: 0;
+        left: 30%;
+        width: 50%;
+        height: 100%;
+        z-index: 10;
+        background: #5c99bd;
+      }
+      .bg.active {
+        background: rgb(157, 227, 255);
       }
     }
 
@@ -139,6 +172,10 @@ export default {
       background: #0c6690;
       outline: none;
       border: none;
+    }
+    input[type="button"]:hover {
+      color: black;
+      background: #3c8ab8;
     }
   }
   img.close {
@@ -164,11 +201,12 @@ export default {
 }
 img.loginBox {
   width: 420px;
-  height: 300px;
+  height: 320px;
   padding: 0;
   position: absolute;
   z-index: 10;
 }
+
 // 出场动画
 // .v-enter,
 // .v-leave-to {
